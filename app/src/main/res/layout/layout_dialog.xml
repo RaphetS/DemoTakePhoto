@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="20dp"
+        android:padding="15dp"
         android:text="拍照"
         android:textSize="22sp" />
 
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="20dp"
+        android:padding="15dp"
         android:text="从相册选取照片"
         android:textSize="22sp" />
     <View
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="20dp"
+        android:padding="15dp"
         android:text="取消"
         android:textSize="22sp" />
 </LinearLayout>

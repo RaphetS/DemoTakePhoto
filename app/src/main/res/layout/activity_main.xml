@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="org.raphets.takephoto.MainActivity">
+    android:orientation="vertical">
 
     <Button
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@android:color/white"
         android:background="@android:color/holo_blue_dark"
         android:id="@+id/btn_takephoto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="拍照、相册" />
 
     <Button
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@android:color/white"
         android:background="@android:color/holo_blue_dark"
         android:id="@+id/btn_takephoto_and_crop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="拍照、相册并裁减" />
 
+    <Button
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_blue_dark"
+        android:id="@+id/btn_camera"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="拍照返回缩略图" />
     <ImageView
         android:layout_marginTop="10dp"
         android:id="@+id/imageView"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="280dp" />
 </LinearLayout>

@@ -19,15 +19,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button btnTakePhoto;
     private Button btnCropPhoto;
+    private Button btnCamera;
     private ImageView iv;
 
     private Uri imgUri;
+    private static final int REQUEST_CODE_CAMERA_SECOND = 104;
     private static final int REQUEST_CODE_CAMERA = 101;
     private static final int REQUEST_CODE_PHOTO_ALBUM = 102;
     private static final int REQUEST_CODE_ZOOM = 103;
@@ -49,11 +53,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         iv = (ImageView) findViewById(R.id.imageView);
+        btnCamera= (Button) findViewById(R.id.btn_camera);
         btnCropPhoto = (Button) findViewById(R.id.btn_takephoto_and_crop);
         btnTakePhoto = (Button) findViewById(R.id.btn_takephoto);
 
         btnCropPhoto.setOnClickListener(this);
         btnTakePhoto.setOnClickListener(this);
+        btnCamera.setOnClickListener(this);
     }
 
     @Override
@@ -66,6 +72,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_takephoto_and_crop:
                 showBottomDialog();
                 type=1;
+                break;
+            case R.id.btn_camera:
+                if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                    Intent getImageByREQUEST_CODE_CAMERA = new Intent("android.media.action.IMAGE_CAPTURE");
+                    startActivityForResult(getImageByREQUEST_CODE_CAMERA, REQUEST_CODE_CAMERA_SECOND);
+                } else {
+                    Toast.makeText(getApplicationContext(), "请确认已经插入SD卡", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }
@@ -206,6 +220,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode==RESULT_OK){
             switch (requestCode){
+                case REQUEST_CODE_CAMERA_SECOND://拍照返回缩略图
+                    Bitmap bm=data.getParcelableExtra("data");
+                    iv.setImageBitmap(bm);
+                    break;
 
                 case REQUEST_CODE_CAMERA: //拍照结果处理
 
@@ -223,6 +241,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             bitmap=getBitmapFromUri(imgUri);
                         }
                         iv.setImageBitmap(bitmap);
+
                     }else {
                         startPhotoREQUEST_CODE_ZOOM(imgUri,REQUEST_CODE_ZOOM);
                     }
